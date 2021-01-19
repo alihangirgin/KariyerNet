@@ -1,0 +1,35 @@
+﻿@model List<KariyerNet.Common.ViewModels.Admin.EditCityViewModel>
+
+@{
+    ViewData["Title"] = "ListCities";
+}
+
+<h1>ListCities</h1>
+
+<p>
+    <a asp-action="AddCity">Şehir Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Şehirler
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityName)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "EditCity", new { cityId = item.CityId }) |
+                    @Html.ActionLink("Sil", "DeleteCity", new {  cityId=item.CityId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

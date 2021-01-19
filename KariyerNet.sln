@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNet.Business", "KariyerNet.Business\KariyerNet.Business.csproj", "{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1CFCC932-067C-4A2A-BE1E-7154CD450E7C} = {1CFCC932-067C-4A2A-BE1E-7154CD450E7C}
+		{982C6DBA-02CC-4B99-A181-48C388BDF766} = {982C6DBA-02CC-4B99-A181-48C388BDF766}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNet.Data", "KariyerNet.Data\KariyerNet.Data.csproj", "{1CFCC932-067C-4A2A-BE1E-7154CD450E7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{982C6DBA-02CC-4B99-A181-48C388BDF766} = {982C6DBA-02CC-4B99-A181-48C388BDF766}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNet.Common", "KariyerNet.Common\KariyerNet.Common.csproj", "{982C6DBA-02CC-4B99-A181-48C388BDF766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNet.WebApp", "KariyerNet.WebApp\KariyerNet.WebApp.csproj", "{019576A0-B044-44AA-B816-D3DBEA2583F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{982C6DBA-02CC-4B99-A181-48C388BDF766} = {982C6DBA-02CC-4B99-A181-48C388BDF766}
+		{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3} = {BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBCFFE0-66E5-45E5-8758-EFA25E2EA0F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CFCC932-067C-4A2A-BE1E-7154CD450E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CFCC932-067C-4A2A-BE1E-7154CD450E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CFCC932-067C-4A2A-BE1E-7154CD450E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CFCC932-067C-4A2A-BE1E-7154CD450E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982C6DBA-02CC-4B99-A181-48C388BDF766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982C6DBA-02CC-4B99-A181-48C388BDF766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982C6DBA-02CC-4B99-A181-48C388BDF766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982C6DBA-02CC-4B99-A181-48C388BDF766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019576A0-B044-44AA-B816-D3DBEA2583F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019576A0-B044-44AA-B816-D3DBEA2583F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019576A0-B044-44AA-B816-D3DBEA2583F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019576A0-B044-44AA-B816-D3DBEA2583F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0716C5E9-44AA-4846-A72E-1F74BA3A6853}
+	EndGlobalSection
+EndGlobal

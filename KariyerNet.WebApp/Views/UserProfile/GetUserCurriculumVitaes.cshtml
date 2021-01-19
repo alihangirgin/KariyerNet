@@ -1,0 +1,232 @@
+﻿@model List<KariyerNet.Common.ViewModels.UserCurriculumVitaeViewModel>
+@{
+    ViewData["Title"] = "GetUserCurriculumVitaes";
+}
+
+<h1>Özgeçmiş</h1>
+
+<div class="row">
+    <div class="col-4 border">
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserProfileInformation">
+            Profil
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserCurriculumVitaes">
+            Özgeçmiş
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetAdvertisementApplies">
+            Başvurular
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/userprofile/edituserdetail">
+            Ayarlar
+        </a>
+    </div>
+
+
+    <div class="col-8">
+        @*@{Html.BeginForm("CreateUserCurriculumVitae", "UserProfile", FormMethod.Get);
+                {
+                    <div>
+                        <input type="submit" value="Özgeçmiş Oluşturucu(Yapım Aşamasında...)" style="width:150px;height:27px" />
+                    </div>
+                }
+                Html.EndForm();
+            }*@
+        <a class="btn btn-outline-dark" asp-area="" asp-controller="UserProfile" asp-action="CreateUserCurriculumVitae">
+            Özgeçmiş Oluşturucu(Yapım Aşamasında...)
+        </a>
+
+
+        <br />
+        <br />
+        <div class="row col-10" style="background-color:white">
+            <div class="col-6"><h6>Özgeçmişler</h6>  </div>
+            <div class="col-6">
+                <a class=" d-flex justify-content-between align-items-center" id="newUserCurriculumVitae">
+                    Yeni Özgeçmiş Oluştur
+                </a>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="row col-12 border">
+
+                    <div class="col-6">
+                        <a class=" d-flex justify-content-between align-items-center">
+                            @item.CVName
+                            Yüklenme Tarihi:@item.CreateDate.Date
+                        </a>
+
+                    </div>
+
+                    @if (item.PublishDate != null)
+                    {
+
+                        <div class="col-4">
+                            <a class="btn btn-danger d-flex justify-content-between align-items-center" asp-area="" asp-controller="UserProfile" asp-action="RemovePublishUserCurriculumVitae" asp-route-curriculumVitaeId="@item.Id">
+
+                                Yayından Kaldır
+                            </a>
+                        </div>
+                        <div class="col-2"></div>
+                    }
+                    else
+                    {
+                        <div class="col-2">
+                            <a class="btn btn-outline-success d-flex justify-content-between align-items-center" asp-area="" asp-controller="UserProfile" asp-action="PublishUserCurriculumVitae" asp-route-curriculumVitaeId="@item.Id">
+                                Yayınla
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-danger d-flex justify-content-between align-items-center" asp-area="" asp-controller="UserProfile" asp-action="DeleteUserCurriculumVitae" asp-route-curriculumVitaeId="@item.Id">
+                                Özgeçmişi Sil
+                            </a>
+                        </div>
+                    }
+
+                    <a class="btn btn-light" asp-area="" asp-controller="UserProfile" asp-action="DownloadUserCurriculumVitae" asp-route-link="@item.FilePath" asp-route-nameSurname="@item.CVName">
+                        Özgeçmişi İndir
+                    </a>
+
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var currentPage = 1;
+
+        $(document).ready(function () {
+            $("#newUserCurriculumVitae").on("click", function (e) {
+                e.preventDefault();
+                $("#newUserCurriculumVitaeModal").modal("show");
+            });
+            //requestMovieList(1);
+            $("#sendNewUserCurriculumVitae").on("click", function () {
+                var formArray = $("#newUserCurriculumVitaeForm").serializeArray();
+                var formData = new FormData();
+
+                $.each(formArray, function (i, item) {
+                    formData.append(item.name, item.value);
+                });
+
+                var file = $("#FilePath")[0];
+                if (file.value.length > 0) {
+                    formData.append("file", file.files[0]);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/UserProfile/AddUserCurriculumVitae",
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response.status) {
+                            alert(response.message);
+                            window.location = response.redirect
+                        }
+                        else {
+                            alert(response.message);
+
+                        }
+
+                        //if (response.status == "success") {
+                        //    $("form .form-control").each(function (i, item) {
+                        //        var input = $(this);
+                        //        input.val("");
+                        //        input.next().removeClass("error field-validation-invalid").html("");
+                        //    });
+                        //    $("#newUserCurriculumVitaeModal").modal("hide");
+                        //    renderMessage("#messageArea", response.message);
+                        //    //requestMovieList(currentPage);
+                        //}
+
+                        //else {
+                        //    $.each(response.errorMessages, function (i, item) {
+                        //        var itemId = "#" + item.Key;
+                        //        var errorSpan = $(itemId).next().html(item.Value).addClass("error field-validation-invalid");
+                        //    });
+                        //}
+                    }
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+                                //function requestMovieList(page) {
+                                //    var formArray = $("#filterForm").serializeArray();
+                                //    formArray.push({ name: "page", value: page });
+                                //    $.ajax({
+                                //        type: "POST",
+                                //        url: "/movie/movielist",
+                                //        data: formArray,
+                                //        dataType: "json",
+                                //        success: function (response) {
+                                //            renderTable(response.movies);
+                                //            renderPagination(response);
+                                //        },
+                                //        error: function () {
+                                //            alert("Bir Hata Oluştu!");
+                                //        }
+                                //    });
+
+                                //};
+    </script>
+}
+
+
+<div class="modal" tabindex="-1" id="newUserCurriculumVitaeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Özgeçmiş Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newUserCurriculumVitaeForm">
+                    <div class="form-group form-row">
+                        <label class="control-label col-md-4" for="CVName">CV Adı</label>
+                        <input class="form-control col-md-8" type="text" data-val="true" data-val-length="The field CVName must be a string with a maximum length of 100." data-val-length-max="100" data-val-required="The CVName field is required." id="CVName" maxlength="100" name="CVName" value="" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="CVName" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label for="FilePath" class="control-label col-md-4">Özgeçmiş Dosyası</label>
+                        <input type="file" name="FilePath" id="FilePath" multiple class="form-control col-md-8" />
+                        <span class="text-danger field-validation-valid"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                <button type="button" class="btn btn-primary" id="NewProductImage">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

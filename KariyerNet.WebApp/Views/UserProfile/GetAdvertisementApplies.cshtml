@@ -1,0 +1,53 @@
+﻿@model List<KariyerNet.Common.ViewModels.GetAdvertisementApplyViewModel>
+@{
+    ViewData["Title"] = "Başvurularım";
+}
+
+<h1>Başvurular</h1>
+
+<div class="row">
+    <div class="col-4 border">
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserProfileInformation">
+            Profil
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserCurriculumVitaes">
+            Özgeçmiş
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetAdvertisementApplies">
+            Başvurular
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/userprofile/edituserdetail">
+            Ayarlar
+        </a>
+    </div>
+
+
+    <div class="col-8">
+
+        <br />
+        <br />
+        <div class="row col-10" style="background-color:white">
+            <div class="col-12"><h6>Başvurularım</h6>  </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="row col-12 border">
+
+                    <div class="col-8">
+                        <a class=" d-flex justify-content-between align-items-center" asp-area="" asp-action="GetJobAdvertisement" asp-controller="JobAdvertisement" asp-route-jobAdvertisementId="@item.JobAdvertisementId" target="_blank">
+                            İlan Adı:@item.JobAdvertisementName
+                            Şirket Adı:@item.CompanyName
+                            Başvuru Tarihi:@item.CreateDate.Date
+
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</div>

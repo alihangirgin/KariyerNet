@@ -1,0 +1,73 @@
+﻿@model EditCompanyDetailViewModel
+@{
+    ViewData["Title"] = "Default";
+}
+
+<style>
+
+    .badge {
+        position: relative;
+        top: -20px;
+        left: -25px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+</style>
+
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="JobAdvertisement" asp-action="SearchJobAdvertisement">İş Ara</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="CompanyDetail" asp-action="GetCompanyProfileInformation">Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="CompanyDetail" asp-action="GetUserCurriculumVitaes">Özgeçmişler</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Kariyer Rehberi</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Pozisyon Rehberi</a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Message" asp-action="ListSendedMessages">
+                <span id="group">
+                    <i class="fa fa-envelope d-block" style=""><span class="badge badge-pill bg-warning text-dark" style="margin-left: 20px;margin-top: 10px;">@Model.NumberOfUnreadSendedMessages</span></i>
+                </span>
+            </a>
+
+        </li>
+    </ul>
+</div>
+
+
+<ul class="navbar-nav flex">
+
+    <li class="nav-item dropdown">
+        <div><img src="~/CompanyProfileImages/@Model.ImageFileName" width="50" height="40" /></div>
+    </li>
+    <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @Model.CompanyName
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" asp-controller="CompanyDetail" asp-action="EditCompanyDetail">Ayarlar</a>
+            <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Yardım</a>
+            <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">Çıkış</a>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link  btn btn-outline-info" asp-area="" asp-controller="JobAdvertisement" asp-action="AddJobAdvertisement">İLAN YAYINLA</a>
+    </li>
+
+</ul>
+
+
+

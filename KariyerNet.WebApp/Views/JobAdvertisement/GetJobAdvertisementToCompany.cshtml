@@ -1,0 +1,31 @@
+﻿@model GetJobAdvertisementToCompanyViewModel
+@{
+    ViewData["Title"] = "GetJobAdvertisementToCompany";
+}
+
+<h1>GetJobAdvertisementToCompany</h1>
+
+<div class="navbar navbar-dark nav-fill mt-0 w-100 bg-info">
+    <div class="container">
+        <div class="col-7">@Model.JobTitle</div>
+        <div class="col-7">@Model.CompanyName</div>
+        <div class="col-12">@Model.CityName</div>
+        <a class="text-dark">Görüntülenme Sayısı:@Model.ViewCount</a>
+    </div>
+</div>
+<div class="container">
+
+
+
+    <pre>@Model.JobDefinition</pre>
+
+
+
+</div>
+
+@foreach (var item in Model.GetAdvertisementApplyToCompanyViewModel)
+{
+    <a class="btn btn-light d-flex justify-content-between align-items-center" asp-area="" asp-controller="JobAdvertisement" asp-action="EditJobAdvertisement">
+        @item.UserName
+    </a>
+}

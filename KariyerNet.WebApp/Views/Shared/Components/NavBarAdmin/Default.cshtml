@@ -1,0 +1,99 @@
+﻿
+@model KariyerNet.Common.ViewModels.EditUserDetailViewModel
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownDepartmant" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Departman
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownDepartmant">
+                <a class="dropdown-item" asp-controller="City" asp-action="AddCity">Ekle</a>
+                <a class="dropdown-item" asp-controller="City" asp-action="EditCities">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownEducationLevel" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Eğitim Seviyesi
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownEducationLevel">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownDrivingLicense" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ehliyet
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownDrivingLicense">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownWorkType" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                İş Tipi
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownWorkType">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownNationality" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Milliyet
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownNationality">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownPosition" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Pozisyon
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownPosition">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownSector" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sektör
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownSector">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ekle</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdownCity" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Şehir
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownCity">
+                <a class="dropdown-item" asp-controller="City" asp-action="AddCity">Ekle</a>
+                <a class="dropdown-item" asp-controller="City" asp-action="ListCities">Düzenle</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav flex">
+
+        <li class="nav-item dropdown">
+            <div><img src="~/UserProfileImages/@Model.ProfileImageFileName" width="50" height="40" /></div>
+        </li>
+        <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle text-dark mr-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Model.UserName
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" asp-controller="UserProfile" asp-action="EditUserDetail">Ayarlar</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="RegisterEmployer">Yardım</a>
+                <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">Çıkış</a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+

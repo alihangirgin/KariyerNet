@@ -1,0 +1,19 @@
+﻿@model UserDetailViewModel
+@{
+    ViewData["Title"] = "GetAppliedUserInformation";
+}
+
+<h1>İş Arayan Profili</h1>
+
+<div><img src="~/UserProfileImages/@Model.FileName" width="100" height="100" /></div>
+
+<a class="nav-link text-dark col-md-2" asp-area="" asp-controller="Message" asp-action="SendMessage" asp-route-selectedUserId="@Model.UserId">Mesaj Gönder</a>
+@*<a class="nav-link text-dark col-md-2" asp-area="" asp-controller="UserProfile" asp-action="CreateUserCurriculumVitae" asp-route-selectedUserId="@Model.UserId">Özgeçmiş İndir</a>*@
+<a class="btn btn-light" asp-area="" asp-controller="UserProfile" asp-action="DownloadUserCurriculumVitae" asp-route-link="~/UserCurriculumVitaes/@Model.CVFileName" asp-route-nameSurname="@Model.NameSurname">
+    Özgeçmiş İndir
+</a>
+<div>Adı Soyadı:@Model.NameSurname</div>
+<div>Doğum Tarihi:@Model.BirthDate</div>
+<div>Ülke:@Model.NationalityName</div>
+<div>Ehliyet:@Model.DrivingLicenseName</div>
+<div>Cinsiyet:@Model.Gender</div>

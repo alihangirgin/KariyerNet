@@ -1,0 +1,97 @@
+﻿@model EditJobAdvertisementViewModel
+@{
+    ViewData["Title"] = "EditJobAdvertisement";
+}
+<style>
+    .button {
+        display: inline-block;
+        text-decoration: none;
+        color: pink;
+        font-weight: bold;
+        min-width: 132px;
+        min-height: 37px;
+        border: 1px solid black;
+        border-radius: 12px;
+        text-align: center;
+        background-color: gray;
+        box-shadow: 8px 8px 8px gray;
+        margin: 10px;
+    }
+
+        .button:active {
+            background-color: green;
+            position: relative;
+            top: 8px;
+            left: 8px;
+        }
+</style>
+
+<h1>EditJobAdvertisement</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditJobAdvertisement" asp-route-jobAdvertisementId="@Model.JobAdvertisementId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.JobTitle" class="control-label"></label>
+                <textarea asp-for="GetJobAdvertisementViewModel.JobTitle" class="form-control"></textarea>
+                <span asp-validation-for="GetJobAdvertisementViewModel.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.JobDefinition" class="control-label"></label>
+                <textarea asp-for="GetJobAdvertisementViewModel.JobDefinition" class="form-control"></textarea>
+                <span asp-validation-for="GetJobAdvertisementViewModel.JobDefinition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.RequiredExperience" class="control-label"></label>
+                <input asp-for="GetJobAdvertisementViewModel.RequiredExperience" class="form-control" />
+                <span asp-validation-for="GetJobAdvertisementViewModel.RequiredExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.CityId" class="control-label"></label>
+                <select asp-for="GetJobAdvertisementViewModel.CityId" class="form-control" asp-items="Model.createJobAdvertisementViewModel.CityList"></select>
+                <span asp-validation-for="GetJobAdvertisementViewModel.CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.EducationLevelId" class="control-label"></label>
+                <select asp-for="GetJobAdvertisementViewModel.EducationLevelId" class="form-control" asp-items="Model.createJobAdvertisementViewModel.EducationLevelList"></select>
+                <span asp-validation-for="GetJobAdvertisementViewModel.EducationLevelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.DepartmantId" class="control-label"></label>
+                <select asp-for="GetJobAdvertisementViewModel.DepartmantId" class="form-control" asp-items="Model.createJobAdvertisementViewModel.DepartmantList"></select>
+                <span asp-validation-for="GetJobAdvertisementViewModel.DepartmantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.WorkTypeId" class="control-label"></label>
+                <select asp-for="GetJobAdvertisementViewModel.WorkTypeId" class="form-control" asp-items="Model.createJobAdvertisementViewModel.WorkTypeList"></select>
+                <span asp-validation-for="GetJobAdvertisementViewModel.WorkTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.PositionId" class="control-label"></label>
+                <select asp-for="GetJobAdvertisementViewModel.PositionId" class="form-control" asp-items="Model.createJobAdvertisementViewModel.PositionList"></select>
+                <span asp-validation-for="GetJobAdvertisementViewModel.PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.AvailableJobCount" class="control-label"></label>
+                <input asp-for="GetJobAdvertisementViewModel.AvailableJobCount" class="form-control" />
+                <span asp-validation-for="GetJobAdvertisementViewModel.AvailableJobCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GetJobAdvertisementViewModel.ExpireDate"></label>
+                <input asp-for="GetJobAdvertisementViewModel.ExpireDate" class="form-control" />
+                <span asp-validation-for="GetJobAdvertisementViewModel.ExpireDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Düzenle" class="btn btn-primary" />
+            </div>
+
+            @*<div class="form-group">
+                <a class="button" input type="submit" asp-area="" asp-controller="JobAdvertisement" asp-action="PublishJobAdvertisement" asp-route-jobAdvertisementId="@Model.JobAdvertisementId">Yayınla</a>
+            </div>*@
+        </form>
+    </div>
+</div>

@@ -1,0 +1,232 @@
+﻿@model KariyerNet.Common.ViewModels.SearchJobAdvertisementViewModel
+@{
+    ViewData["Title"] = "SearchJobAdvertisement";
+}
+
+<h1>SearchJobAdvertisement</h1>
+
+
+<div id="display">
+
+</div>
+
+<div class="row">
+    <div class="col-4 border">
+        <form asp-action="SearchJobAdvertisement" id="formId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label">Kelime</label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select asp-for="WhereToSearch">
+                    <option  value="1">Tüm ilanda</option>
+                    <option value="2">Sadece Başlıkta</option>
+                    <option value="3">Sadece Firma Adında</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select asp-for="DateSearch">
+                    <option  value="1">Bütün İlanlar</option>
+                    <option value="2">Bugünün İlanları</option>
+                    <option value="3">Son 3 saat</option>
+                    <option value="4">Son 8 saat</option>
+                    <option value="5">Son 3 gün</option>
+                    <option value="6">Son 7 gün</option>
+                    <option value="7">Son 15 gün</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sektör</label>
+                <select asp-for="SectorId" id="sectorId" class="form-control" asp-items="Model.SectorList" multiple>
+                    <option value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="SectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Departman</label>
+                <select asp-for="DepartmantId" class="form-control" asp-items="Model.DepartmantList" multiple>
+                    <option value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="DepartmantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Eğitim Seviyesi</label>
+                <select asp-for="EducationLevelId" class="form-control" asp-items="Model.EducationLevelList" multiple>
+                    <option  value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="EducationLevelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Pozisyon</label>
+                <select asp-for="PositionId" class="form-control" asp-items="Model.PositionList" multiple>
+                    <option  value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Çalışma Şekli</label>
+                <select asp-for="WorkTypeId" class="form-control" asp-items="Model.WorkTypeList" multiple>
+                    <option  value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="WorkTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Şehir</label>
+                <select asp-for="CityId" class="form-control" asp-items="Model.CityList" multiple>
+                    <option  value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select asp-for="RequiredExperience">
+                    <option  value="1">Hepsi</option>
+                    <option value="2">Tecrübesiz</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="buttonId" class="btn btn-primary">Detaylı Arama</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-8">
+        @if (Model.searchResultJobAdvertisementViewModel != null)
+        {
+            @foreach (var item in Model.searchResultJobAdvertisementViewModel)
+            {
+                <div class="media position-relative">
+                    <div class="media-body">
+
+                        <a asp-controller="JobAdvertisement" asp-action="GetJobAdvertisement" asp-route-jobAdvertisementId="@item.JobAdvertisementId" target="_blank" class="stretched-link">@item.JobTitle</a>
+                        <p class="col-12">
+                            <a asp-area="" asp-controller="JobAdvertisement" asp-action="GetJobAdvertisement" asp-route-jobAdvertisementId="@item.JobAdvertisementId" target="_blank">
+                                @item.CompanyName
+                            </a>
+                        </p>
+                        <p class="col-12">
+                            @item.CityName
+                        </p>
+                        <p class="col-12">
+                            @item.CreateDate
+                        </p>
+                    </div>
+                </div>
+                @*<div class="col-12">
+
+                        <p class="col-12">
+                            <a class="btn btn-light d-flex justify-content-between align-items-center" href="/home/index" target="_blank">
+                                @item.JobTitle
+                            </a>
+                        </p>
+                        <p class="col-12">
+                            <a class="btn btn-light d-flex justify-content-between align-items-center" href="/home/index" target="_blank">
+                                @item.CompanyName
+                            </a>
+                        </p>
+                        <p class="col-12">
+                            @item.CityName
+                        </p>
+
+                    </div>*@
+
+            }
+        }
+
+
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#display").html('');
+
+            //$("form#formId input[type=text], select, textarea").each(function (key) {
+            //var elementId = key;
+
+            //var elementText = $("option:selected", this).text() || $(this).val();
+            //var elementName = $(this).attr('name');
+
+            //alert(elementName + ': ' +elementId);
+            //alert(elementText);
+
+            //if (elementText != '' && elementText != 'Hepsi' && elementText != 'Tüm ilanda' && elementText != 'Bütün İlanlar') {
+            //    $("#display").append('<button data-id="' + elementName + '">' + elementText + '</button>');
+            //}
+
+            //});
+
+
+            var selectItems = [];
+            var inputText = $("#Text").val();
+            if (inputText != "") {
+                selectItems.push({ id: 'Text', index: 0, text: inputText });
+            }
+            for (var option of document.getElementById('WhereToSearch').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id:'WhereToSearch',index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('DateSearch').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id:'DateSearch', index: option.value, text: option.text });
+                }
+            }            
+            for (var option of document.getElementById('sectorId').options) {
+                if (option.selected && option.text!='Hepsi') {
+                    selectItems.push({ id: 'sectorId', index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('DepartmantId').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id: 'DepartmantId', index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('EducationLevelId').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id: 'EducationLevelId', index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('PositionId').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id: 'PositionId', index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('WorkTypeId').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id: 'WorkTypeId', index: option.value, text: option.text });
+                }
+            }
+            for (var option of document.getElementById('CityId').options) {
+                if (option.selected && option.text != 'Hepsi') {
+                    selectItems.push({ id: 'CityId', index: option.value, text: option.text });
+                }
+            }
+            selectItems.forEach(element => $("#display").append('<button class="tag" data-index="' + element.index + '" data-id="' + element.id + '">' + element.text + '</button>'));
+            $('.tag').on('click', function (e) {
+                e.preventDefault();
+                var id = "#" + $(this).data("id");
+                //$(id).val[$(this).data('index')].removeAttr("selected");
+                if (id != '#Text') {
+                    $(id + ' > option[value="' + $(this).data('index') + '"]').removeAttr("selected");
+                }
+                else {
+                    $("#Text").val("");
+                }
+                $(this).closest('.tag').remove();
+                $('#buttonId').first().click();
+            })
+
+
+           
+        });
+
+
+    </script>
+} 

@@ -1,0 +1,68 @@
+﻿@model KariyerNet.Common.ViewModels.EditCompanyDetailViewModel
+
+@{
+    ViewData["Title"] = "Şirket Bilgileri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-md-4"
+        <form asp-action="EditCompanyDetail" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div><img src="~/CompanyProfileImages/@Model.ImageFileName" width="100" height="100" /></div>
+            <div class="form-group">
+                <label asp-for="SectorId" class="control-label"></label>
+                <select asp-for="SectorId" class="form-control" asp-items="Model.SectorList"></select>
+                <span asp-validation-for="SectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoundationYear" class="control-label"></label>
+                <input asp-for="FoundationYear" class="form-control" />
+                <span asp-validation-for="FoundationYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfEmployees" class="control-label"></label>
+                <select asp-for="NumberOfEmployees" class="form-control" asp-items="Html.GetEnumSelectList<NumberEmployeeEnum>()"></select>
+                <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WebSite" class="control-label"></label>
+                <input asp-for="WebSite" class="form-control" />
+                <span asp-validation-for="WebSite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <textarea asp-for="About" class="form-control"></textarea>
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group form-row">
+                <label for="ImageUrl" class="control-label col-md-4">Şirket Logosu</label>
+                <input asp-page-handler="Upload" asp-for="ImageUrl" type="file" multiple class="form-control col-md-8" />
+                <span class="text-danger field-validation-valid"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model List<GetMessageViewModel>
+@{
+    ViewData["Title"] = "GetMessageDetail";
+}
+
+<h1>Gelen Mesajlar</h1>
+
+<a class="nav-link text-dark col-md-2" asp-area="" asp-controller="Message" asp-action="SendMessage">Mesaj Gönder</a>
+
+@foreach (var item in Model)
+{
+    if (item.ViewDate != null)
+    {
+        <a class="btn btn-light d-flex justify-content-between align-items-center" asp-area="" asp-controller="Message" asp-action="GetMessageDetail" asp-route-messageId="@item.MessageId">
+            <div>Gönderilen Kişi:@item.SenderUserName</div>
+            <div>Gönderilme Tarihi:@item.CreateDate</div>
+        </a>
+        @if (item.MessageText != null)
+        {
+            <div>@item.MessageText</div>
+        }
+    }
+    else
+    {
+        <a class="btn btn-info d-flex justify-content-between align-items-center" asp-area="" asp-controller="Message" asp-action="GetMessageDetail" asp-route-messageId="@item.MessageId">
+            <div>Gönderilen Kişi:@item.SenderUserName</div>
+            <div>Gönderilme Tarihi:@item.CreateDate</div>
+        </a>
+        @if (item.MessageText != null)
+        {
+            <div>@item.MessageText</div>
+        }
+    }
+
+
+}

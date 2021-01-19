@@ -1,0 +1,46 @@
+﻿@model KariyerNet.Common.ViewModels.GetJobAdvertisementViewModel
+@{
+    ViewData["Title"] = "GetJobAdvertisement";
+}
+
+<div class="navbar navbar-dark nav-fill mt-0 w-100 bg-info">
+    <div class="container">
+        <div class="col-7">@Model.JobTitle</div>
+        <div class="col-7">@Model.CompanyName</div>
+        @if (Model.isUserApplied == true)
+        { 
+            <a class="btn btn-danger col-5" asp-area="" asp-controller="JobAdvertisement" asp-action="RemoveAdvertisementApply" asp-route-jobAdvertisementId="@Model.JobAdvertisementId">Başvuru Kaldır</a>
+        }
+        else
+        {
+            <a class="btn btn-danger col-5" asp-area="" asp-controller="JobAdvertisement" asp-action="AddAdvertisementApply" asp-route-jobAdvertisementId="@Model.JobAdvertisementId">Başvur</a>
+        }
+
+        <div class="col-12">@Model.CityName</div>
+        <a class="text-dark">Görüntülenme Sayısı:@Model.ViewCount</a>
+    </div>
+</div>
+<div class="container">
+
+    @*<div>
+            Job Definition:@Model.JobDefinition
+        </div>*@
+
+    <pre>@Model.JobDefinition</pre>
+
+
+    @*Job Title:@Model.JobTitle
+        CompanyName:@Model.CompanyName
+
+        Job Definition:@Model.JobDefinition
+        Required Experience:@Model.RequiredExperience
+        Position Name:@Model.PositionName
+        Çalışma Şekli:@Model.WorkTypeName
+        Şehir: @Model.CityName
+        Eğitim Seviyesi:@Model.EducationLevelName
+        Departman:@Model.DepartmantName
+        Yayınlanma Tarihi:@Model.CreateDate
+        Bitiş Tarihi:@Model.ExpireDate
+        Uygun Pozisyon:@Model.AvailableJobCount*@
+
+</div>

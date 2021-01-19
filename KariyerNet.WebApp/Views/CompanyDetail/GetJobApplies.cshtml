@@ -1,0 +1,91 @@
+﻿@model SearchJobAppliesToCompanyViewModel
+
+@{
+    ViewData["Title"] = "GetJobApplies";
+}
+
+<h1>Başvurular</h1>
+
+
+<div class="row">
+    <div class="col-4 border">
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/JobAdvertisement/AddJobAdvertisement">
+            İlan Ver
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/CompanyDetail/GetJobAdvertisements">
+            İlanlar
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/CompanyDetail/GetJobApplies">
+            Başvurular
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/CompanyDetail/GetUserCurriculumVitaes">
+            Özgeçmiş Havuzu
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/CompanyDetail/EditCompanyDetail">
+            Ayarlar
+        </a>
+    </div>
+
+    <div class="col-4 border">
+        <form asp-action="GetJobApplies" id="formId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="JobAdvertisementTitle" class="control-label">İlan Adı</label>
+                <input asp-for="JobAdvertisementTitle" class="form-control" />
+                <span asp-validation-for="JobAdvertisementTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameSurname" class="control-label">Adı Soyadı</label>
+                <input asp-for="NameSurname" class="form-control" />
+                <span asp-validation-for="NameSurname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label">Cinsiyet</label>
+                <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<GenderEnum>()"><option value="0">Hepsi</option></select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Ehliyet</label>
+                <select asp-for="DrivingLicenseId" id="sectorId" class="form-control" asp-items="Model.DrivingLicenseList" multiple>
+                    <option value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="DrivingLicenseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Milliyet</label>
+                <select asp-for="NationalityId" id="sectorId" class="form-control" asp-items="Model.NationalityList" multiple>
+                    <option value="0">Hepsi</option>
+                </select>
+                <span asp-validation-for="NationalityId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" id="buttonId" class="btn btn-primary">Detaylı Arama</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    @if (Model.userProfiles != null)
+    {
+        @foreach (var item in Model.userProfiles)
+        {
+            <div class="row">
+                <a class="btn btn-light" asp-area="" asp-controller="CompanyDetail" asp-action="GetAppliedUserInformation" asp-route-userId="@item.UserClaimViewModel.UserId" target="_blank">
+                    Kullanıcı:@item.UserClaimViewModel.NameSurname Başvurduğu İlan:@item.JobTitle
+                </a>
+            </div>
+
+
+
+
+        }
+    }
+
+
+
+
+
+

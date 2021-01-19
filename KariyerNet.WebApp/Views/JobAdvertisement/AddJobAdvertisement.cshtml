@@ -1,0 +1,75 @@
+﻿@model KariyerNet.Common.ViewModels.CreateJobAdvertisementViewModel
+@{
+    ViewData["Title"] = "AddJobAdvertisement";
+}
+
+<h1>İlan Ver</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddJobAdvertisement">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="JobTitle" class="control-label"></label>
+                <textarea asp-for="JobTitle" class="form-control"></textarea>
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobDefinition" class="control-label"></label>
+                <textarea asp-for="JobDefinition" class="form-control"></textarea>
+                <span asp-validation-for="JobDefinition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequiredExperience" class="control-label"></label>
+                <input asp-for="RequiredExperience" class="form-control" />
+                <span asp-validation-for="RequiredExperience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label"></label>
+                <select asp-for="CityId" class="form-control" asp-items="Model.CityList"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EducationLevelId" class="control-label"></label>
+                <select asp-for="EducationLevelId" class="form-control" asp-items="Model.EducationLevelList"></select>
+                <span asp-validation-for="EducationLevelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmantId" class="control-label"></label>
+                <select asp-for="DepartmantId" class="form-control" asp-items="Model.DepartmantList"></select>
+                <span asp-validation-for="DepartmantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTypeId" class="control-label"></label>
+                <select asp-for="WorkTypeId" class="form-control" asp-items="Model.WorkTypeList"></select>
+                <span asp-validation-for="WorkTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionId" class="control-label"></label>
+                <select asp-for="PositionId" class="form-control" asp-items="Model.PositionList"></select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailableJobCount" class="control-label"></label>
+                <input asp-for="AvailableJobCount" class="form-control" />
+                <span asp-validation-for="AvailableJobCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpireDate"></label>
+                <input asp-for="ExpireDate" class="form-control" />
+                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="Draft" asp-for="Publish" value="false" checked><label for="Draft">Taslak Oluştur</label><br>
+                <input type="radio" id="Publish" asp-for="Publish" value="true"><label for="Publish">Yayınla</label><br>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>

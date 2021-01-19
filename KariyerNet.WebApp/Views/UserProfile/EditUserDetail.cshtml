@@ -1,0 +1,72 @@
+﻿@model KariyerNet.Common.ViewModels.EditUserDetailViewModel
+@{
+    ViewData["Title"] = "EditUserDetail";
+}
+
+<h1>Ayarlar</h1>
+
+<div class="row">
+    <div class="col-4 border">
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserProfileInformation">
+            Profil
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserCurriculumVitaes">
+            Özgeçmiş
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetAdvertisementApplies">
+            Başvurular
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/userprofile/edituserdetail">
+            Ayarlar
+        </a>
+    </div>
+    <div class="col-8">
+        <div class="">
+            <h4>Kişisel Bilgiler</h4>
+        </div>
+        <form asp-action="EditUserDetail" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div><img src="~/UserProfileImages/@Model.ProfileImageFileName" width="100" height="100" /></div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NameSurname" class="control-label"></label>
+                    <input asp-for="NameSurname" class="form-control" />
+                    <span asp-validation-for="NameSurname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BirthDate" class="control-label"></label>
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<GenderEnum>()"></select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NationalityId" class="control-label"></label>
+                    <select asp-for="NationalityId" class="form-control" asp-items="Model.NationalityList"></select>
+                    <span asp-validation-for="NationalityId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DrivingLicenseId" class="control-label"></label>
+                    <select asp-for="DrivingLicenseId" class="form-control" asp-items="Model.DrivingLicenseList"></select>
+                    <span asp-validation-for="DrivingLicenseId" class="text-danger"></span>
+                </div>
+                <div class="form-group form-row">
+                    <label for="ProfileImageFile" class="control-label col-md-4">Fotoğraf</label>
+                    <input asp-page-handler="Upload" asp-for="ProfileImageFile" type="file" multiple class="form-control col-md-8" />
+                    <span class="text-danger field-validation-valid"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

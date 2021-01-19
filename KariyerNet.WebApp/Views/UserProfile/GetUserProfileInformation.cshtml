@@ -1,0 +1,57 @@
+﻿@model KariyerNet.Common.ViewModels.UserProfileViewModel
+@{
+    ViewData["Title"] = "GetUserProfileInformation";
+}
+
+<h1>Profil</h1>
+
+<div class="row">
+    <div class="col-4 border">
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserProfileInformation">
+            Profil
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetUserCurriculumVitaes">
+            Özgeçmiş
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/UserProfile/GetAdvertisementApplies">
+            Başvurular
+        </a>
+        <a class="btn btn-light d-flex justify-content-between align-items-center" href="/userprofile/edituserdetail">
+            Ayarlar
+        </a>
+    </div>
+
+
+    <div class="col-8">
+        <h1>Hoşgeldin&nbsp;@Model.userDetail.NameSurname</h1>
+        <div><img src="~/UserProfileImages/@Model.userDetail.ProfileImageFileName" width="100" height="100" /></div>
+        <div>Okunmamış @Model.userDetail.numberOfUnreadMessages yeni mesajın var!</div>
+
+        <br />
+        <br />
+        <div class="row col-10" style="background-color:white">
+            <div class="col-6"><h6>Güncel Özgeçmiş</h6>  </div>
+            <div class="col-6">
+                <a class=" d-flex justify-content-between align-items-center" href="/home/index" target="_blank">
+                    Tümünü Gör
+                </a>
+            </div>
+            @if (Model.UserPublishedCurriculumVitaeViewModel != null)
+            {
+                <div class="row col-10">
+
+                    <div>
+                        <a class=" d-flex justify-content-between align-items-center" href="/home/index" target="_blank">
+                            @Model.UserPublishedCurriculumVitaeViewModel.CVName
+                            @Model.UserPublishedCurriculumVitaeViewModel.CreateDate.Date
+                        </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</div>

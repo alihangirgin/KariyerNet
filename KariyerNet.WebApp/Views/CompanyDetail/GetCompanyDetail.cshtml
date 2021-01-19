@@ -1,0 +1,43 @@
+﻿@model KariyerNet.Common.ViewModels.GetCompanyDetailViewModel
+@{
+    ViewData["Title"] = "GetCompanyDetail";
+}
+
+    <div class="col-12 border m-2 p-2" style="background:white;">
+        <div class="well well-lg">
+            <h4>@Model.CompanyName</h4>
+            <p>26831 takipçi</p>
+
+        </div>
+        <table class="border-top col-12">
+            <tr>
+                <td>
+                    <strong>Sektör</strong> @Model.SectorName
+                </td>
+                <td>
+                    <strong>Kuruluş Yılı</strong> @Model.FoundationYear
+                </td>
+                <td>
+                    <strong>Adres</strong> @Model.Address
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Çalışan Sayısı</strong> @Html.DisplayFor(x => x.NumberOfEmployees)
+                </td>
+                <td>
+                    <strong>Web Sitesi</strong> @Model.WebSite
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+
+        
+    </div>
+
+
+
+    <a class="btn btn-link text-success" asp-controller="CompanyFollower" asp-action="AddCompanyFollower" asp-route-companyUserId="@Model.UserId">Takip Et</a>
+    <a class="btn btn-link text-danger" asp-controller="CompanyFollower" asp-action="DeleteCompanyFollower" asp-route-companyUserId="@Model.UserId">Takipten Çıkar</a>
